@@ -21,4 +21,5 @@ Press Win+R, type:
 ```
 shell:startup
 ```
+Replace the example directory with the directory the "streambit.py" file is.
 Drag the "streambit-startup.bat" file into the opened folder. The script will then run automatically on startup.
