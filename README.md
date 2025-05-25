@@ -9,11 +9,11 @@ Open CMD or Terminal and run:
 pip install pyserial
 ```
 Flash "microbit1.hex" onto the first MicroBit, then flash "microbit2.hex" onto the second MicroBit.  
-On your PC, open "streambit.py" and configure your COM ports (you can find these in Device Manager under Ports when the MicroBits are connected), as well as directories, programs, or files you want to launch.
+On your PC, edit "streambit.py" and configure your COM ports (you can find these in Device Manager under Ports when the MicroBits are connected), as well as directories, programs, or files you want to launch.
 
 ## Usage  
 Run "streambit.py" and wait for the PC and MicroBits to establish a connection.  
-Pressing buttons A, B, or A+B on the MicroBits will launch the assigned programs or open specified directories.  
+Pressing buttons A, B or A+B on the MicroBits will launch the assigned programs or open specified directories, you can also shake the MicroBit or touch one of the pins on the board (place your finger on GND then touch pin 0, 1 or 2).  
 You can configure this script to run automatically at startup, but note that the MicroBits must be plugged in at all times.
 
 ## Run at Startup  
