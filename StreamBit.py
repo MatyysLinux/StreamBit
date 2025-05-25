@@ -1,21 +1,28 @@
-import serial
-import threading
-import time
-import os
+import serial, threading, time, os
 
 BAUDRATE = 115200
 
-# Mapping commands to application launches
+# Mapování příkazů na spuštění aplikací
 COMMANDS = {
-    'COM_': {   # Set your port here (find it in Device Manager under Ports)
-        'a':  lambda: os.startfile("C:\\"),         # Replace with a directory, program, etc.
-        'b':  lambda: os.startfile("notepad.exe"), # Replace with a directory, program, etc.
-        'ab': lambda: os.startfile("calc.exe")     # Replace with a directory, program, etc.
+    'COM_': {  # Replace with what you find in Device Manager under Ports
+        'a':  lambda: os.startfile("C:\\"),                      # Replace with your directory, file or program
+        'b':  lambda: os.startfile("notepad.exe"),               # Replace with your directory, file or program
+        'ab': lambda: os.startfile("calc.exe"),                  # Replace with your directory, file or program
+        'logo': lambda: os.startfile(r"C:\Users\OEM"),           # Replace with your directory, file or program
+        'p0': lambda: os.startfile(r"D:\Other\hexit.pyw"),       # Replace with your directory, file or program
+        'p1': lambda: os.startfile(r"D:\Other\pdf-to-png.pyw"),  # Replace with your directory, file or program
+        'p2': lambda: os.startfile(r"D:\Apps"),                  # Replace with your directory, file or program
+        'shake': lambda: os.startfile(r"D:\Downloads")           # Replace with your directory, file or program
     },
-    'COM_': {   # Set your second port here (find it in Device Manager under Ports)
-        'a2':  lambda: os.startfile(r" "),  # Replace with a directory, program, etc.
-        'b2':  lambda: os.startfile(r" "),  # Replace with a directory, program, etc.
-        'ab2': lambda: os.startfile(r" ")   # Replace with a directory, program, etc.
+    'COM_': {  # Replace with what you find in Device Manager under Ports
+        'a2':  lambda: os.startfile(r"D:\Apps\Steam\steam.exe"),                        # Replace with your directory, file or program
+        'b2':  lambda: os.startfile(r"D:\Apps\Thonny\thonny.exe"),                      # Replace with your directory, file or program
+        'ab2': lambda: os.startfile(r"D:\Apps\Angry IP Scanner\ipscan.exe"),            # Replace with your directory, file or program
+        'logo2': lambda: os.startfile(r"D:\Apps\OBS\obs-studio\bin\64bit\obs64.exe"),   # Replace with your directory, file or program
+        'p02': lambda: os.startfile(r"D:\Apps\Voicemod V3\Voicemod.exe"),               # Replace with your directory, file or program
+        'p12': lambda: os.startfile(r"D:\Apps\MultiMC"),                                # Replace with your directory, file or program
+        'p22': lambda: os.startfile(r"D:\Apps\Steam\steamapps\common"),                 # Replace with your directory, file or program
+        'shake2': lambda: os.startfile(r"D:\Downloads\Songs")                           # Replace with your directory, file or program
     }
 }
 
@@ -25,7 +32,7 @@ def handle_microbit(port):
         print(f"[{port}] Sending handshake…")
         ser.write(b"test\n")
 
-        # Wait for "OK" response from micro:bit
+        # Čekáme na "OK" od micro:bitu
         while True:
             line = ser.readline().decode('utf-8').strip()
             if line == "OK":
@@ -54,7 +61,7 @@ def handle_microbit(port):
             ser.close()
 
 if __name__ == "__main__":
-    ports = ['COM_', 'COM_']  # Set your ports here (find them in Device Manager under Ports)
+    ports = ['COM_', 'COM_']  # Replace with what you find in Device Manager under Ports
     for p in ports:
         t = threading.Thread(target=handle_microbit, args=(p,), daemon=True)
         t.start()
